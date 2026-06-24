@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "pergunta": "Como faço minha matrícula?",
+    "resposta": "Clique em Quero me inscrever, escolha o curso desejado e preencha seus dados. Após o cadastro, nossa equipe entrará em contato para orientar você sobre as próximas etapas e fornecer todas as informações necessárias."
+  },
+  {
+    "id": 2,
+    "pergunta": "Quais são os valores dos cursos?",
+    "resposta": "Os valores podem variar de acordo com o curso e as condições vigentes. Para receber informações atualizadas, entre em contato com nossa equipe de atendimento."
+  },
+  {
+    "id": 3,
+    "pergunta": "Quando acontecem as aulas do curso presencial?",
+    "resposta": "As aulas presenciais acontecem atualmente às terças-feiras, das 19h30 às 22h, na Igreja Tabernáculo de Davi, em Curitiba."
+  },
+  {
+    "id": 4,
+    "pergunta": "Ao final do curso, recebo certificado?",
+    "resposta": "Sim. Após a conclusão dos módulos e o cumprimento dos requisitos acadêmicos, o aluno recebe um certificado emitido pelo Instituto."
+  },
+  {
+    "id": 5,
+    "pergunta": "Há suporte durante o curso?",
+    "resposta": "Sim. Os alunos contam com suporte administrativo para questões acadêmicas e acompanhamento pastoral durante sua formação."
+  },
+  {
+    "id": 6,
+    "pergunta": "Os cursos do ITT são reconhecidos pelo MEC?",
+    "resposta": "Os cursos oferecidos pelo Instituto Teológico Taber são classificados como cursos livres, conforme a legislação educacional brasileira. Por essa razão, não possuem reconhecimento do MEC como graduação ou pós-graduação. Ao concluir a formação, o estudante recebe um certificado de conclusão emitido pelo próprio Instituto."
+  },
+  {
+    "id": 7,
+    "pergunta": "Preciso fazer parte do Tabernáculo de Davi para estudar no ITT?",
+    "resposta": "Não. O ITT está vinculado à Igreja Tabernáculo de Davi, mas recebe alunos de diferentes igrejas, ministérios e denominações. Também é uma oportunidade para quem deseja aprofundar seu conhecimento bíblico, desenvolver sua vida espiritual e crescer no entendimento das Escrituras."
+  },
+  {
+    "id": 8,
+    "pergunta": "O Curso de Teologia Bíblica Ministerial possui avaliações?",
+    "resposta": "Sim. Ao longo da formação, o aluno terá acesso a conteúdos de apoio, aulas, atividades e avaliações que auxiliam na assimilação do aprendizado. Para avançar e concluir cada módulo, é necessário cumprir os requisitos propostos e obter aprovação nas avaliações correspondentes."
+  }
+]

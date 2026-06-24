@@ -1,0 +1,65 @@
+{
+  "anos": [
+    {
+      "ano": "1º Ano",
+      "subtitulo": "Fundamentos",
+      "disciplinas": [
+        "Realidade da Nova Criação",
+        "Graça",
+        "Autoridade Espiritual",
+        "Caráter Tratado",
+        "Finanças",
+        "Princípios Elementares I",
+        "Ensino sobre Batismos",
+        "Princípios Elementares II"
+      ]
+    },
+    {
+      "ano": "2º Ano",
+      "subtitulo": "Identidade e Ministério",
+      "disciplinas": [
+        "Jesus é o Senhor",
+        "Homem Espiritual",
+        "Sangue de Jesus",
+        "Panorama da Graça",
+        "Nome de Jesus",
+        "Avivamento",
+        "Panorama da Lei",
+        "Jesus no Tabernáculo"
+      ]
+    },
+    {
+      "ano": "3º Ano",
+      "subtitulo": "Crescimento e Liderança",
+      "disciplinas": [
+        "Príncipes de Deus",
+        "Batalha Espiritual",
+        "Espírito Santo",
+        "Níveis de Relacionamento",
+        "História da Igreja",
+        "Lealdade e Deslealdade",
+        "Reis e Sacerdotes",
+        "Autoridade Espiritual",
+        "Unção, Graça e Glória",
+        "Obras Vivas"
+      ]
+    },
+    {
+      "ano": "4º Ano",
+      "subtitulo": "Graduação e Prática Ministerial",
+      "disciplinas": [
+        "Prática Ministerial",
+        "Ordem de Melquisedeque",
+        "Escatologia",
+        "Missiologia",
+        "Angeologia",
+        "Tabernáculo de Davi",
+        "Harpas",
+        "Artes",
+        "Danças e Profético",
+        "Heróis da Fé",
+        "Taças"
+      ]
+    }
+  ]
+}
