@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O que a sua forma de ler a Bíblia revela sobre você?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,600;0,800;0,900;1,700&family=Nunito+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: caloroso, jovem, reverente; fala com quem passa no stand como um amigo.
+   IDEA: a fé como espelho dos três pilares do Exousia (Poder, Palavra, Propósito); o resultado "entra em foco".
+   PICTURE: leque de seis páginas coloridas (os seis personagens); no resultado, a página do perfil toma a tela e o mapa dos 3 pilares.
+   COLOUR and TYPE: identidade do site do ITT/Exousia: roxo profundo #1e103a, lavanda #f2edff, laranja #f4620f; Raleway + Nunito Sans.
+   LAYOUT: uma tela por vez, coluna central, botões grandes; dados pedidos antes da revelação; contatos vão pra uma planilha do Google; telão em #telao. */
+:root{color-scheme:dark;--bg:#1e103a;--bg2:#261445;--bg3:#2d1a56;--ink:#f2edff;--mut:#9b8fc0;--line:rgba(242,237,255,.14);--card:rgba(255,255,255,.05);--acc:#f4620f;--acc2:#ff7d30;--deep:#1e103a;--p:#f4620f}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Nunito Sans",system-ui,sans-serif;overflow-x:clip;-webkit-tap-highlight-color:transparent}
+h1,h2,h3,.big{font-family:Raleway,"Nunito Sans",sans-serif;font-weight:900;line-height:1.05;text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,56px)}h2{font-size:clamp(26px,4.2vw,40px);font-weight:800}h3{font-weight:800;line-height:1.2}
+p{margin:0}
+img{max-width:100%}
+.scr{display:none;min-height:100dvh;padding:clamp(20px,4vw,56px) max(5vw,16px);flex-direction:column;align-items:center}
+.scr.on{display:flex}
+.wrap{width:100%;max-width:760px;display:flex;flex-direction:column;gap:22px}
+.mut{color:var(--mut)}.small{font-size:14px}
+button,.btn{font:800 18px/1.2 "Nunito Sans",sans-serif;border:0;border-radius:14px;padding:18px 26px;min-height:56px;cursor:pointer;background:var(--acc);color:#fff;transition:transform .15s,background .15s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+button:hover,.btn:hover{background:var(--acc2)}
+button:active{transform:scale(.98)}
+button:focus-visible,input:focus-visible,.btn:focus-visible{outline:3px solid var(--acc2);outline-offset:3px}
+button:disabled{opacity:.5;cursor:default}
+.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.ghost:hover{background:var(--card)}
+.wa{background:#25d366;color:#0b2e17}.wa:hover{background:#3be07a}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+input[type=text],input[type=tel],input[type=email]{font:16px "Nunito Sans",sans-serif;width:100%;padding:16px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);min-height:56px}
+input::placeholder{color:var(--mut)}
+label{font-weight:800;font-size:15px;display:block;margin-bottom:6px}
+.logos{display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap}
+.logos img{height:36px;width:auto;flex:none}.logos i{width:1px;height:30px;background:var(--line)}
+/* start */
+#start{background:radial-gradient(120% 80% at 50% 0%,var(--bg3),var(--bg) 70%)}
+#start .wrap{align-items:center;text-align:center;justify-content:center;flex:1}
+.fan{width:min(480px,88vw);aspect-ratio:1.45}
+.hl{color:var(--acc)}
+.pil{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.pil span{border:2px solid var(--line);border-radius:99px;padding:6px 14px;font-weight:800;font-size:14px}
+/* quiz */
+.bar{height:8px;border-radius:8px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .35s}
+.tag{align-self:flex-start;font-weight:800;font-size:13px;border-radius:99px;padding:4px 12px;background:rgba(244,98,15,.14);color:var(--acc2)}
+.opts{display:grid;gap:12px}
+.opt{text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--line);font-weight:600;font-size:18px;padding:20px 22px;justify-content:flex-start;gap:14px;align-items:flex-start}
+.opt b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:#fff;font-size:14px}
+.opt:hover{border-color:var(--acc);background:rgba(244,98,15,.08)}
+/* gate */
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:10px}
+.st button{background:var(--card);border:2px solid var(--line);color:var(--ink);font-size:17px}
+.st button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mut);font-weight:400}
+.chk input{width:24px;height:24px;flex:none;margin:2px 0 0;accent-color:var(--acc)}
+.err{color:#ff9b9b;font-weight:600}
+.lock{display:flex;gap:14px;align-items:center;background:var(--bg3);border-radius:18px;padding:18px}
+.lock svg{flex:none;width:44px;height:44px}
+/* reveal */
+#reveal .wrap{flex:1;justify-content:center;align-items:center;text-align:center}
+.blur{animation:focus 2.2s ease forwards}
+@keyframes focus{from{filter:blur(18px);opacity:.2;transform:scale(1.15)}to{filter:blur(0);opacity:1;transform:none}}
+/* result */
+#result{padding:0}
+.hero{width:100%;background:var(--p);color:var(--deep);padding:clamp(28px,5vw,64px) max(5vw,16px) clamp(28px,4vw,48px);display:flex;justify-content:center}
+.hero .wrap{gap:14px}
+.hero .big{font-size:clamp(50px,11vw,100px)}
+.hero q{font-family:Raleway,sans-serif;font-style:italic;font-weight:700;font-size:clamp(20px,2.8vw,26px);line-height:1.3;quotes:"“" "”"}
+.ref{font-weight:800;font-size:14px;opacity:.8}
+.body{padding:clamp(24px,4vw,48px) max(5vw,16px);display:flex;justify-content:center;width:100%}
+.blk{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px}
+.blk div{background:var(--bg2);border-radius:16px;padding:20px;border-top:5px solid var(--p)}
+.blk h3{margin:0 0 6px;font-size:16px}
+.map{background:var(--bg2);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.pr{display:grid;grid-template-columns:6.5em minmax(0,1fr) 3em;gap:12px;align-items:center;font-weight:800}
+.pr .t{height:18px;border-radius:9px;background:var(--card);overflow:hidden}
+.pr .t i{display:block;height:100%;border-radius:9px;background:var(--mut);transition:width 1s .3s}
+.pr.low .t i{background:var(--acc)}.pr.low span:first-child{color:var(--acc2)}
+.pr span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.ex{background:var(--bg2);border:2px solid var(--p);border-radius:18px;padding:22px}
+.ex h3{margin:0 0 6px;font-size:19px}
+/* story */
+#story{justify-content:flex-start;gap:16px}
+#story .wrap{max-width:520px;align-items:center;gap:16px}
+#cardImg{width:min(100%,calc((100dvh - 300px)*.5625));min-width:220px;aspect-ratio:9/16;border-radius:18px;background:var(--bg2);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.share{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px;width:100%}
+/* painel / telao */
+.bars{display:grid;gap:14px}
+.br{display:grid;grid-template-columns:9em minmax(0,1fr) 3.5em;gap:12px;align-items:center;font-weight:800}
+.br span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.br .t{height:34px;border-radius:10px;background:var(--card);overflow:hidden}
+.br .t i{display:block;height:100%;border-radius:10px;transition:width .6s}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px}
+.stats div{background:var(--bg2);border-radius:14px;padding:16px}.stats b{display:block;font:900 32px Raleway,sans-serif}
+#telao .wrap{max-width:1240px}
+#telao .br{font-size:clamp(18px,2.6vw,30px);grid-template-columns:8em minmax(0,1fr) 3em}
+#telao .br .t{height:clamp(34px,6vh,64px)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--mut);font-weight:800}
+.scroll{overflow-x:auto}
+@media(max-width:600px){.br{grid-template-columns:6.5em minmax(0,1fr) 2.8em}.opt{font-size:17px;padding:18px}.logos img{height:28px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<section class="scr on" id="start">
+  <div class="wrap">
+    <div class="logos"><img src="logo-exousia.png" alt="Exousia School"><i></i><img src="logo-itt.png" alt="Instituto Teológico Taber"></div>
+    <svg class="fan" viewBox="0 0 520 360" aria-hidden="true" id="fan"></svg>
+    <h1>O que a sua forma de ler a Bíblia <span class="hl">revela sobre você?</span></h1>
+    <p class="mut" style="max-width:34em">12 perguntas rápidas sobre a sua caminhada. Descubra com qual personagem bíblico você mais se parece e como estão os seus três pilares.</p>
+    <div class="pil"><span>Poder</span><span>Palavra</span><span>Propósito</span></div>
+    <button id="go" style="font-size:20px;padding:20px 44px">Começar o teste</button>
+  </div>
+</section>
+
+<section class="scr" id="quiz">
+  <div class="wrap">
+    <div class="row" style="justify-content:space-between;align-items:center"><span class="mut small" id="qn"></span><button class="ghost" id="back" style="min-height:44px;padding:8px 16px;font-size:15px">Voltar</button></div>
+    <div class="bar"><i id="prog"></i></div>
+    <span class="tag" id="qp"></span>
+    <h2 id="qt"></h2>
+    <div class="opts" id="opts"></div>
+  </div>
+</section>
+
+<section class="scr" id="gate">
+  <div class="wrap">
+    <div class="lock"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="7" y="19" width="30" height="21" rx="5" fill="#f4620f"/><path d="M14 19v-5a8 8 0 0 1 16 0v5" fill="none" stroke="#f2edff" stroke-width="4"/><circle cx="22" cy="29" r="3.5" fill="#1e103a"/></svg>
+      <div><h2 style="font-size:clamp(24px,3.6vw,34px)">Seu resultado está pronto!</h2><p class="mut">Preencha seus dados pra desbloquear.</p></div></div>
+    <form id="form" novalidate style="display:flex;flex-direction:column;gap:16px">
+      <div><label>Você já estuda no Exousia / ITT?</label>
+        <div class="st" id="st">
+          <button type="button" data-s="aluno" aria-pressed="false">Sou aluno</button>
+          <button type="button" data-s="ex-aluno" aria-pressed="false">Já fui aluno</button>
+          <button type="button" data-s="nunca" aria-pressed="false">Nunca estudei</button>
+        </div></div>
+      <div><label for="lNome">Nome</label><input type="text" id="lNome" autocomplete="name" maxlength="60"></div>
+      <div><label for="lMail">E-mail</label><input type="email" id="lMail" autocomplete="email" inputmode="email" maxlength="80" placeholder="voce@email.com"></div>
+      <div><label for="lTel">WhatsApp</label><input type="tel" id="lTel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="(41) 9 0000-0000"></div>
+      <label class="chk"><input type="checkbox" id="lOk"><span>Autorizo o Instituto Teológico Taber a usar estes dados para entrar em contato comigo sobre o Exousia, conforme a LGPD. Posso pedir para sair a qualquer momento.</span></label>
+      <p id="lMsg" class="small err" aria-live="polite"></p>
+      <button type="submit" id="lSend" style="font-size:20px">Revelar meu resultado</button>
+    </form>
+  </div>
+</section>
+
+<section class="scr" id="reveal">
+  <div class="wrap"><p class="mut">A sua forma de ler a Bíblia revela…</p><p class="big blur" id="rvName" style="font-size:clamp(44px,9vw,88px)"></p></div>
+</section>
+
+<section class="scr" id="result">
+  <div class="hero"><div class="wrap">
+    <p class="ref" id="rHi"></p>
+    <p class="big" id="rName"></p>
+    <p style="font-size:20px;font-weight:800" id="rSub"></p>
+    <q id="rVerse"></q><p class="ref" id="rRef"></p>
+  </div></div>
+  <div class="body"><div class="wrap">
+    <p id="rDesc" style="font-size:18px"></p>
+    <div class="blk">
+      <div><h3>Seu ponto forte</h3><p id="rForte"></p></div>
+      <div><h3>O que pode estar faltando</h3><p id="rFalta"></p></div>
+    </div>
+    <div class="map">
+      <h3 style="font-size:19px">Seus três pilares</h3>
+      <div id="rMap" style="display:grid;gap:12px"></div>
+      <p id="rLow"></p>
+    </div>
+    <div class="ex"><h3>Como o Exousia caminha com você</h3><p id="rEx"></p><p class="mut" style="margin-top:10px">No Exousia, Poder, Palavra e Propósito caminham juntos.</p></div>
+    <p id="rStatus" style="font-weight:600"></p>
+    <div class="row"><button id="toStory">Compartilhar meu resultado</button><button class="ghost" id="again">Novo teste</button></div>
+  </div></div>
+</section>
+
+<section class="scr" id="story">
+  <div class="wrap">
+    <img id="cardImg" alt="Card do seu resultado para compartilhar">
+    <p class="mut small" style="text-align:center">No celular, você também pode tocar e segurar a imagem pra salvar.</p>
+    <div class="share">
+      <button id="shNative">Compartilhar</button>
+      <a class="btn wa" id="shWa" href="#" target="_blank" rel="noopener">Enviar no WhatsApp</a>
+      <button class="ghost" id="shSave">Salvar imagem pros stories</button>
+    </div>
+    <p class="small" id="shMsg" aria-live="polite" style="text-align:center"></p>
+    <div class="row" style="justify-content:center"><button class="ghost" id="storyBack">Voltar ao resultado</button><button class="ghost" id="storyNew">Novo teste</button></div>
+  </div>
+</section>
+
+<section class="scr" id="telao">
+  <div class="wrap" style="flex:1;justify-content:center;gap:clamp(20px,4vh,40px)">
+    <div class="logos" style="justify-content:flex-start"><img src="logo-exousia.png" alt="Exousia School"></div>
+    <h1 style="font-size:clamp(38px,5.6vw,76px)">O que a Bíblia <span class="hl">revelou hoje</span></h1>
+    <div class="bars" id="tBars"></div>
+    <p class="mut" style="font-size:clamp(16px,2vw,22px)"><span id="tTot">0</span> pessoas já fizeram o teste. Faça o seu no stand do Exousia.</p>
+  </div>
+</section>
+
+<script>
+/* ===== CONFIGURAÇÃO =====
+   Cole aqui a URL do App Script (veja LEIA-ME.txt). Termina em /exec */
+const SCRIPT_URL="COLE_AQUI_A_URL_DO_APPS_SCRIPT";
+/* ======================== */
+{
+const P={
+ E:{n:"O Etíope",c:"#38bdf8",sub:"Você tem fome da Palavra.",v:"Como poderei entender, se alguém não me ensinar?",r:"Atos 8.31",
+  d:"Como o oficial etíope lendo Isaías na estrada, você abre a Bíblia com sede de verdade. O desejo existe; o que trava é entender o que está lendo e ligar as partes da história.",
+  f:"Humildade e fome. Você não finge saber: você quer aprender.",
+  l:"Alguém que caminhe ao seu lado e explique, como Filipe fez. Um método pra ler a Bíblia inteira sem se perder.",
+  x:"O Exousia percorre a Bíblia com método e professores que explicam o texto e o contexto, pra você sair da dúvida e ler sozinho com confiança."},
+ A:{n:"Apolo",c:"#ff7d30",sub:"Você já está servindo.",v:"Explicaram-lhe com mais exatidão o caminho de Deus.",r:"Atos 18.26",
+  d:"Apolo era fervoroso, eloquente e já ensinava. Mesmo assim, Priscila e Áquila o chamaram de lado pra completar o que faltava. Você é assim: ativo, apaixonado, já à frente de pessoas.",
+  f:"Paixão e coragem. Você não espera estar pronto pra servir.",
+  l:"Base sólida pra sustentar o que você já faz, pra que sua paixão venha com exatidão.",
+  x:"No Exousia, a sua prática ministerial ganha fundamento bíblico e teológico, pra você liderar e ensinar com segurança."},
+ M:{n:"Marta",c:"#ff7aa8",sub:"Você é quem faz acontecer.",v:"Marta, Marta, andas inquieta com muitas coisas; uma só é necessária.",r:"Lucas 10.41-42",
+  d:"Marta abriu a casa e serviu Jesus com o coração. Mas o serviço tomou o lugar de sentar aos pés dele. Você ama servir, e a Palavra e a oração muitas vezes ficam pra depois.",
+  f:"Disposição e amor em forma de serviço. A igreja anda por causa de gente como você.",
+  l:"Tempo aos pés de Jesus. Profundidade pra que o serviço nasça da presença e da Palavra, e não do cansaço.",
+  x:"O Exousia cria um ritmo: um tempo separado, toda semana, pra beber da fonte antes de voltar a servir."},
+ N:{n:"Nicodemos",c:"#a99eff",sub:"Sua mente não para.",v:"Como pode ser isso?",r:"João 3.9",
+  d:"Nicodemos foi até Jesus à noite com perguntas sérias, e ouviu sobre nascer do Espírito. Você também pensa, questiona e não se contenta com resposta pronta.",
+  f:"Honestidade intelectual. Suas perguntas são um jeito de levar Deus a sério.",
+  l:"Um lugar seguro pra perguntar, e uma fé que vá além da cabeça e chegue à experiência com o Espírito.",
+  x:"No Exousia, perguntas são bem-vindas: as aulas dão espaço pra dúvida e respostas com base bíblica, histórica e teológica."},
+ T:{n:"Timóteo",c:"#4ade80",sub:"Você cresceu nessa fé.",v:"Deus não nos deu espírito de covardia, mas de poder, de amor e de moderação.",r:"2 Timóteo 1.7",
+  d:"Timóteo aprendeu as Escrituras desde criança, com a avó e a mãe. Mas Paulo o chamou a reavivar o dom que havia nele e a ir além da fé herdada. Você conhece a linguagem da igreja; agora é hora de a fé ser sua.",
+  f:"Raízes. Você tem uma história com Deus e conhece o caminho de casa.",
+  l:"Saber por que você crê no que crê, e reavivar o dom de Deus em você com ousadia.",
+  x:"O Exousia transforma o que você ouviu a vida inteira em convicção própria, com fundamento e ousadia pra viver o seu chamado."},
+ B:{n:"Os Bereanos",c:"#fcd34d",sub:"Você examina tudo.",v:"Examinavam cada dia nas Escrituras se estas coisas eram assim.",r:"Atos 17.11",
+  d:"Os bereanos receberam a Palavra com avidez e conferiam tudo nas Escrituras. Você já estuda, compara e vai atrás do contexto.",
+  f:"Disciplina e profundidade. Você não aceita nada sem conferir na Palavra.",
+  l:"O próximo nível: ir mais fundo e começar a formar outras pessoas com o que você aprende.",
+  x:"O Exousia é uma formação bíblica e ministerial de 2 anos: ferramentas pra aprofundar o seu estudo e preparar você pra ensinar outros."}
+};
+const ORDER=["E","A","M","N","T","B"];
+const PIL={poder:{n:"Poder",d:"Intimidade com Deus, oração e vida no Espírito. Sem isso, conhecimento vira só informação."},
+ palavra:{n:"Palavra",d:"Conhecer as Escrituras com profundidade e método, pra crer e viver com fundamento."},
+ proposito:{n:"Propósito",d:"Descobrir o seu chamado e servir com clareza, usando os dons que Deus te deu."}};
+const PO=["poder","palavra","proposito"];
+const STATUS={"aluno":"Aluno atual","ex-aluno":"Ex-aluno","nunca":"Nunca estudou"};
+const STXT={"aluno":"Que bom ter você com a gente! Leve esse resultado pra sala de aula: ele mostra onde investir neste semestre.","ex-aluno":"Que tal retomar de onde parou? A equipe do Exousia vai te chamar pra contar como voltar.","nunca":"A equipe do Exousia vai te chamar no WhatsApp pra contar como fazer parte da próxima turma."};
+/* [pilar, pergunta, [[texto, personagens, nota do pilar 1-3]]] */
+const Q=[
+ ["palavra","Você abre a Bíblia e cai em Levítico. O que acontece?",[["Leio tudo, mas fico sem entender o porquê daquilo","E2 T1",2],["Pulo pra um livro mais tranquilo","M2 T1",1],["Surgem umas dez perguntas na minha cabeça","N2 B1",2],["Vou atrás do contexto e de como aquilo aponta pra Jesus","B2 N1",3]]],
+ ["poder","Sua vida de oração hoje parece mais com…",[["Correria: oro no caminho, entre uma coisa e outra","M2 E1",1],["Tenho vontade, mas não sei bem como orar","E2 N1",1],["Oro com fervor, principalmente quando estou servindo","A2 M1",2],["Tenho um tempo separado e gosto de interceder por outros","B2 T1",3]]],
+ ["proposito","Se alguém te perguntasse “qual é o seu chamado?”, você…",[["Responderia na hora: sei pra que Deus me chamou","A2 B1",3],["Sirvo em tudo, mas nunca parei pra pensar nisso","M2 A1",2],["Acho que tenho, mas ainda tenho muitas dúvidas","N2 T1",2],["Não faço ideia, e queria descobrir","E2 T1",1]]],
+ ["palavra","Quando você lê a Bíblia, normalmente é…",[["Corrido, entre uma tarefa e outra","M2 T1",1],["Com fome, mas sem saber bem por onde começar","E2 M1",2],["Com caderno, comparando textos","B2 N1",3],["Mais quando preciso preparar algo pra ministrar","A2 M1",2]]],
+ ["poder","Quando se fala do Espírito Santo, você…",[["Cresci ouvindo, mas nunca vivi algo marcante","T2 E1",1],["Tenho muitas perguntas sobre como Ele age","N2 E1",2],["Sinto Ele agir quando estou ministrando","A2 M1",3],["Quero entender melhor o que a Bíblia diz sobre Ele","B2 N1",2]]],
+ ["proposito","Qual é a sua história com a igreja?",[["Nasci e cresci na igreja","T2 B1",1],["Cheguei há pouco tempo e tudo ainda é novo","E2 N1",1],["Sirvo em vários ministérios","M2 A1",3],["Já lidero ou ensino alguém","A2 B1",3]]],
+ ["palavra","Alguém te pergunta: “como você sabe que a Bíblia é confiável?”",[["Travo. Nunca parei pra pensar nisso","T2 E1",1],["Falo da minha experiência com Deus","A2 M1",2],["Já me fiz essa pergunta muitas vezes","N2 B1",2],["Tenho alguns argumentos, mas queria saber mais","B2 T1",3]]],
+ ["poder","Alguém pede oração por algo grave, ali na sua frente. Você…",[["Oro na hora, com fé","A2 T1",3],["Digo que vou orar e depois esqueço na correria","M2 E1",1],["Fico inseguro e prefiro chamar um líder","T2 E1",1],["Oro, mas fico pensando se Deus vai responder","N2 B1",2]]],
+ ["proposito","Um domingo livre, sem escala. Você…",[["Descansa, mas sente que deveria estar fazendo alguma coisa","M2 T1",2],["Finalmente lê aquele livro de teologia parado na estante","B2 N1",2],["Maratona estudos e podcasts sobre as suas dúvidas","N2 E1",1],["Vai ao culto e fica pensando em como faria diferente","A2 T1",3]]],
+ ["palavra","Se a Bíblia fosse um lugar, hoje ela seria…",[["Uma cidade nova, e eu sem mapa","E2 N1",1],["A casa onde eu cresci","T2 M1",2],["Uma mina: quanto mais eu cavo, mais encontro","B2 N1",3],["Um campo de trabalho","A2 M1",2]]],
+ ["poder","Jejum, intercessão, vigília: pra você isso é…",[["Algo que já faz parte da minha caminhada","B2 T1",3],["Algo que admiro, mas nunca consegui manter","M2 T1",2],["Algo que vi a vida toda na igreja, sem entender bem por quê","T2 N1",1],["Novo pra mim, e quero aprender","E2 N1",1]]],
+ ["proposito","O que você mais queria receber agora?",[["Alguém que me explicasse a Bíblia do começo ao fim","E2 T1",1],["Um tempo pra sair do ativismo e voltar à fonte","M2 T1",2],["Ferramentas pra servir e ensinar melhor","A2 B1",3],["Clareza sobre o que Deus quer de mim","N2 T1",1]]]
+];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=p=>p+Date.now()+Math.random().toString(36).slice(2,6);
+let st={};const LS="exousia-teste-v3";const online=/^https:\/\/script\.google\.com\//.test(SCRIPT_URL);
+const local=()=>{try{return JSON.parse(localStorage.getItem(LS))||{res:[],leads:[]}}catch(e){return{res:[],leads:[]}}};
+const putLocal=(k,v)=>{try{const d=local();d[k].push(v);localStorage.setItem(LS,JSON.stringify(d))}catch(e){}};
+
+/* fan */
+$("fan").innerHTML=ORDER.map((k,i)=>{const a=(i-2.5)*13;return `<g style="transform-origin:260px 330px;transform:rotate(${a}deg)"><rect x="200" y="40" width="120" height="290" rx="10" fill="${P[k].c}"/><rect x="200" y="40" width="120" height="290" rx="10" fill="url(#sh)"/><text x="260" y="90" text-anchor="middle" fill="#1e103a" font-family="Raleway,sans-serif" font-weight="900" font-size="32">${P[k].n.replace(/^(Os|O) /,"").charAt(0)}</text></g>`}).join("")+`<defs><linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#1e103a" stop-opacity=".35"/><stop offset=".25" stop-color="#1e103a" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".15"/></linearGradient></defs>`;
+
+/* navigation */
+const show=id=>{document.querySelectorAll(".scr").forEach(s=>s.classList.toggle("on",s.id===id));window.scrollTo(0,0)};
+const route=()=>{const h=location.hash.slice(1);if(h==="telao"){show("telao");watch()}else if(document.querySelector(".scr.on").id==="telao")reset()};
+window.addEventListener("hashchange",route);
+
+function reset(){st={ans:[],res:null,pil:null,status:null,nome:"",sending:false};$("form").reset();$("lMsg").textContent="";$("lSend").disabled=false;
+ $("st").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed","false"));$("shMsg").textContent="";
+ document.documentElement.style.setProperty("--p","#f4620f");show("start")}
+$("go").onclick=()=>{st.ans=[];renderQ();show("quiz")};
+
+function renderQ(){const i=st.ans.length,q=Q[i];$("qn").textContent=`Pergunta ${i+1} de ${Q.length}`;$("prog").style.width=(i/Q.length*100)+"%";
+ $("qp").textContent=PIL[q[0]].n;$("qt").textContent=q[1];
+ $("opts").innerHTML=q[2].map((o,j)=>`<button class="opt" data-j="${j}"><b>${"ABCD"[j]}</b><span>${esc(o[0])}</span></button>`).join("");
+ $("back").style.visibility=i?"visible":"hidden"}
+$("opts").addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b)return;st.ans.push(+b.dataset.j);if(st.ans.length<Q.length)renderQ();else toGate()});
+$("back").onclick=()=>{st.ans.pop();renderQ()};
+
+function score(){const s={},sec={},pv={},pm={};ORDER.forEach(k=>{s[k]=0;sec[k]=0});PO.forEach(k=>{pv[k]=0;pm[k]=0});
+ st.ans.forEach((j,i)=>{const o=Q[i][2][j];o[1].split(" ").forEach(t=>{const k=t[0],n=+t[1];s[k]+=n;if(n===1)sec[k]++});pv[Q[i][0]]+=o[2];pm[Q[i][0]]+=3});
+ const last=Q[Q.length-1][2][st.ans[Q.length-1]][1][0];
+ const res=ORDER.slice().sort((a,b)=>s[b]-s[a]||(b===last)-(a===last)||sec[b]-sec[a])[0];
+ const pil={};PO.forEach(k=>pil[k]=Math.round(pv[k]/pm[k]*100));
+ const low=PO.slice().sort((a,b)=>pil[a]-pil[b])[0];
+ return{res,pil,low}}
+function toGate(){$("prog").style.width="100%";Object.assign(st,score());show("gate")}
+
+/* gate */
+$("st").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;st.status=b.dataset.s;$("st").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)))});
+$("form").addEventListener("submit",async e=>{e.preventDefault();if(st.sending)return;
+ const n=$("lNome").value.trim(),em=$("lMail").value.trim(),t=$("lTel").value.replace(/[^\d+]/g,""),m=$("lMsg");
+ if(!st.status){m.textContent="Conte se você já estuda no Exousia / ITT.";return}
+ if(n.length<2){m.textContent="Escreva seu nome.";$("lNome").focus();return}
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){m.textContent="Confira o e-mail.";$("lMail").focus();return}
+ if(t.replace(/\D/g,"").length<10){m.textContent="Confira o WhatsApp com DDD.";$("lTel").focus();return}
+ if(!$("lOk").checked){m.textContent="Marque a autorização pra liberar o resultado.";return}
+ m.textContent="";st.sending=true;$("lSend").disabled=true;st.nome=n.split(/\s+/)[0];
+ const now=Date.now();
+ const lead={nome:n,email:em,tel:t,status:st.status,perfil:st.res,poder:st.pil.poder,palavra:st.pil.palavra,proposito:st.pil.proposito,fortalecer:st.low,t:now};
+ const r={perfil:st.res,status:st.status,fortalecer:st.low,t:now};
+ send(lead);
+ reveal()});
+
+function reveal(){const p=P[st.res];document.documentElement.style.setProperty("--p",p.c);
+ const r=$("rvName");r.textContent=p.n;r.style.color=p.c;r.classList.remove("blur");void r.offsetWidth;r.classList.add("blur");show("reveal");
+ fillResult(p);setTimeout(()=>show("result"),2600)}
+
+function fillResult(p){$("rHi").textContent=st.nome?`${st.nome}, a sua forma de ler a Bíblia revela que você é`:"A sua forma de ler a Bíblia revela que você é";
+ $("rName").textContent=p.n;$("rSub").textContent=p.sub;$("rVerse").textContent=p.v;$("rRef").textContent=p.r;
+ $("rDesc").textContent=p.d;$("rForte").textContent=p.f;$("rFalta").textContent=p.l;$("rEx").textContent=p.x;
+ $("rMap").innerHTML=PO.map(k=>`<div class="pr${k===st.low?" low":""}"><span>${PIL[k].n}</span><span class="t"><i style="width:0" data-w="${st.pil[k]}"></i></span><span>${st.pil[k]}%</span></div>`).join("");
+ setTimeout(()=>$("rMap").querySelectorAll("i").forEach(i=>i.style.width=i.dataset.w+"%"),2700);
+ $("rLow").innerHTML=`<b style="color:var(--acc2)">Pilar pra fortalecer agora: ${PIL[st.low].n}.</b> ${esc(PIL[st.low].d)}`;
+ $("rStatus").textContent=STXT[st.status]||""}
+
+/* card image */
+let cardBlob=null;
+function wrap(ctx,text,x,y,maxW,lh){const words=text.split(" ");let line="";const out=[];for(const w of words){const t=line?line+" "+w:w;if(ctx.measureText(t).width>maxW&&line){out.push(line);line=w}else line=t}if(line)out.push(line);out.forEach((l,i)=>ctx.fillText(l,x,y+i*lh));return y+out.length*lh}
+async function makeCard(){const p=P[st.res],W=1080,H=1920,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
+ try{await Promise.all(["900 140px Raleway","italic 700 50px Raleway","800 40px 'Nunito Sans'"].map(f=>document.fonts.load(f)))}catch(e){}
+ x.fillStyle="#1e103a";x.fillRect(0,0,W,H);
+ const g=x.createRadialGradient(W/2,0,0,W/2,0,1100);g.addColorStop(0,"#2d1a56");g.addColorStop(1,"rgba(30,16,58,0)");x.fillStyle=g;x.fillRect(0,0,W,H);
+ x.save();x.translate(0,600);x.transform(1,-.14,0,1,0,0);x.fillStyle=p.c;x.fillRect(-20,60,W+40,560);x.restore();
+ x.fillStyle="#f2edff";x.font="800 40px 'Nunito Sans',sans-serif";x.textBaseline="top";
+ let y=wrap(x,"A MINHA FORMA DE LER A BÍBLIA REVELA SOBRE MIM:",96,150,880,54);
+ x.fillStyle="#1e103a";x.font="900 150px Raleway,sans-serif";let fs=150;while(x.measureText(p.n).width>900&&fs>80){fs-=6;x.font=`900 ${fs}px Raleway,sans-serif`}
+ x.fillText(p.n,90,760);x.font="800 50px 'Nunito Sans',sans-serif";x.fillText(p.sub,96,760+fs+20);
+ x.fillStyle="#f2edff";x.font="italic 700 50px Raleway,sans-serif";y=wrap(x,"“"+p.v+"”",96,1290,880,66);
+ x.fillStyle="#9b8fc0";x.font="800 36px 'Nunito Sans',sans-serif";x.fillText(p.r,96,y+18);
+ y=y+110;x.font="800 34px 'Nunito Sans',sans-serif";
+ PO.forEach((k,i)=>{const yy=y+i*62;x.fillStyle=k===st.low?"#ff7d30":"#f2edff";x.fillText(PIL[k].n,96,yy);x.fillStyle="rgba(255,255,255,.1)";x.fillRect(340,yy+6,560,26);x.fillStyle=k===st.low?"#f4620f":"#9b8fc0";x.fillRect(340,yy+6,560*st.pil[k]/100,26);x.fillStyle="#f2edff";x.textAlign="right";x.fillText(st.pil[k]+"%",984,yy);x.textAlign="left"});
+ x.fillStyle="#f2edff";x.font="800 36px 'Nunito Sans',sans-serif";x.fillText("E a sua, revela o quê? Faça o teste!",96,H-230);
+ const logo=document.querySelector(".logos img");try{if(!logo.complete)await new Promise(r=>logo.onload=r);const lh=64,lw=logo.naturalWidth/logo.naturalHeight*lh;x.drawImage(logo,96,H-150,lw,lh)}catch(e){}
+ return new Promise(r=>c.toBlob(b=>{cardBlob=b;r(URL.createObjectURL(b))},"image/png"))}
+
+$("toStory").onclick=async()=>{show("story");$("cardImg").removeAttribute("src");$("cardImg").src=await makeCard();
+ const txt=`Fiz o teste "O que a sua forma de ler a Bíblia revela sobre você?" do Exousia e deu: ${P[st.res].n}! ${P[st.res].sub} E você, qual personagem bíblico você é?`;
+ $("shWa").href="https://wa.me/?text="+encodeURIComponent(txt);$("shWa").dataset.t=txt};
+$("shNative").onclick=async()=>{const m=$("shMsg");if(!cardBlob)return;const f=new File([cardBlob],"meu-resultado-exousia.png",{type:"image/png"});
+ try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text:$("shWa").dataset.t});m.textContent="";return}throw 0}
+ catch(e){if(e&&e.name==="AbortError")return;m.textContent="Este navegador não abre o compartilhamento direto. Salve a imagem e poste nos stories, ou envie pelo WhatsApp."}};
+$("shSave").onclick=async()=>{const m=$("shMsg");if(!cardBlob)return;
+ try{const a=document.createElement("a");a.href=$("cardImg").src;a.download="meu-resultado-exousia.png";document.body.appendChild(a);a.click();a.remove();m.textContent="Imagem salva. Agora é só postar nos stories e marcar o Exousia."}catch(e){m.textContent="Toque e segure a imagem acima e escolha Salvar imagem."}};
+$("storyBack").onclick=()=>show("result");$("again").onclick=reset;$("storyNew").onclick=reset;
+
+/* idle reset for tablet */
+let idle;const bump=()=>{clearTimeout(idle);idle=setTimeout(()=>{const on=document.querySelector(".scr.on").id;if(!["start","telao"].includes(on))reset()},120000)};
+["pointerdown","keydown"].forEach(ev=>document.addEventListener(ev,bump,{passive:true}));
+
+/* envio pra planilha (com fila: se a internet cair, reenvia depois) */
+const queue=()=>{try{return JSON.parse(localStorage.getItem(LS+"-fila"))||[]}catch(e){return[]}};
+const setQueue=q=>{try{localStorage.setItem(LS+"-fila",JSON.stringify(q))}catch(e){}};
+async function post(lead){await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(lead)})}
+async function send(lead){if(!online){console.warn("SCRIPT_URL não configurada");setQueue(queue().concat([lead]));return}
+ try{await post(lead)}catch(e){setQueue(queue().concat([lead]))}}
+async function flush(){if(!online)return;const q=queue();if(!q.length)return;const rest=[];for(const l of q){try{await post(l)}catch(e){rest.push(l)}}setQueue(rest)}
+setInterval(flush,30000);window.addEventListener("online",flush);flush();
+
+/* telão: lê a contagem de perfis da planilha (sem dados pessoais) */
+let watching=false;
+function drawBars(el,c){const max=Math.max(1,...ORDER.map(k=>c[k]||0));
+ el.innerHTML=ORDER.map(k=>`<div class="br"><span>${P[k].n}</span><span class="t"><i style="width:${(c[k]||0)/max*100}%;background:${P[k].c}"></i></span><span>${+c[k]||0}</span></div>`).join("")}
+async function pull(){if(!online)return;try{const r=await fetch(SCRIPT_URL+"?contagem=1");const c=await r.json();drawBars($("tBars"),c);$("tTot").textContent=ORDER.reduce((a,k)=>a+(+c[k]||0),0)}catch(e){}}
+function watch(){drawBars($("tBars"),{});pull();if(watching)return;watching=true;setInterval(()=>{if(location.hash==="#telao")pull()},15000)}
+
+reset();
+route();
+}
+</script>
+</body>
+</html>
