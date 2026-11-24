@@ -334,22 +334,25 @@ async function makeCard(){const p=P[st.res],W=1080,H=1920,c=document.createEleme
  try{await Promise.all(["900 140px Raleway","italic 700 50px Raleway","800 40px 'Nunito Sans'"].map(f=>document.fonts.load(f)))}catch(e){}
  x.fillStyle="#1e103a";x.fillRect(0,0,W,H);
  const g=x.createRadialGradient(W/2,0,0,W/2,0,1100);g.addColorStop(0,"#2d1a56");g.addColorStop(1,"rgba(30,16,58,0)");x.fillStyle=g;x.fillRect(0,0,W,H);
- x.save();x.translate(0,600);x.transform(1,-.14,0,1,0,0);x.fillStyle=p.c;x.fillRect(-20,60,W+40,560);x.restore();
+ x.save();x.translate(0,440);x.transform(1,-.14,0,1,0,0);x.fillStyle=p.c;x.fillRect(-20,60,W+40,560);x.restore();
  x.fillStyle="#f2edff";x.font="800 40px 'Nunito Sans',sans-serif";x.textBaseline="top";
- let y=wrap(x,"A MINHA FORMA DE LER A BÍBLIA REVELA SOBRE MIM:",96,150,880,54);
+ let y=wrap(x,"A MINHA FORMA DE LER A BÍBLIA REVELA SOBRE MIM:",96,130,880,54);
  x.fillStyle="#1e103a";x.font="900 150px Raleway,sans-serif";let fs=150;while(x.measureText(p.n).width>900&&fs>80){fs-=6;x.font=`900 ${fs}px Raleway,sans-serif`}
- x.fillText(p.n,90,760);x.font="800 50px 'Nunito Sans',sans-serif";x.fillText(p.sub,96,760+fs+20);
- x.fillStyle="#f2edff";x.font="italic 700 50px Raleway,sans-serif";y=wrap(x,"“"+p.v+"”",96,1290,880,66);
+ x.fillText(p.n,90,560+(150-fs)/2);x.font="800 50px 'Nunito Sans',sans-serif";x.fillText(p.sub,96,740);
+ let vf=50;for(;vf>=36;vf-=2){x.font=`italic 700 ${vf}px Raleway,sans-serif`;const tmp=document.createElement("canvas").getContext("2d");tmp.font=x.font;let ln=1,cur="";for(const w of ("“"+p.v+"”").split(" ")){const t=cur?cur+" "+w:w;if(tmp.measureText(t).width>880&&cur){ln++;cur=w}else cur=t}if(1060+ln*vf*1.32+70<=1400)break}
+ x.fillStyle="#f2edff";y=wrap(x,"“"+p.v+"”",96,1060,880,Math.round(vf*1.32));
  x.fillStyle="#9b8fc0";x.font="800 36px 'Nunito Sans',sans-serif";x.fillText(p.r,96,y+18);
- y=y+110;x.font="800 34px 'Nunito Sans',sans-serif";
+ y=1450;x.font="800 34px 'Nunito Sans',sans-serif";
  PO.forEach((k,i)=>{const yy=y+i*62;x.fillStyle=k===st.low?"#ff7d30":"#f2edff";x.fillText(PIL[k].n,96,yy);x.fillStyle="rgba(255,255,255,.1)";x.fillRect(340,yy+6,560,26);x.fillStyle=k===st.low?"#f4620f":"#9b8fc0";x.fillRect(340,yy+6,560*st.pil[k]/100,26);x.fillStyle="#f2edff";x.textAlign="right";x.fillText(st.pil[k]+"%",984,yy);x.textAlign="left"});
- x.fillStyle="#f2edff";x.font="800 36px 'Nunito Sans',sans-serif";x.fillText("E a sua, revela o quê? Faça o teste!",96,H-230);
- const logo=document.querySelector(".logos img");try{if(!logo.complete)await new Promise(r=>logo.onload=r);const lh=64,lw=logo.naturalWidth/logo.naturalHeight*lh;x.drawImage(logo,96,H-150,lw,lh)}catch(e){}
+ x.fillStyle="#f2edff";x.font="800 36px 'Nunito Sans',sans-serif";x.fillText("E a sua, revela o quê? Faça o teste!",96,H-215);
+ const logo=document.querySelector(".logos img");try{if(!logo.complete)await new Promise(r=>logo.onload=r);const lh=64,lw=logo.naturalWidth/logo.naturalHeight*lh;x.drawImage(logo,96,H-140,lw,lh)}catch(e){}
  return new Promise(r=>c.toBlob(b=>{cardBlob=b;r(URL.createObjectURL(b))},"image/png"))}
 
 $("toStory").onclick=async()=>{show("story");$("cardImg").removeAttribute("src");$("cardImg").src=await makeCard();
- const txt=`Fiz o teste "O que a sua forma de ler a Bíblia revela sobre você?" do Exousia e deu: ${P[st.res].n}! ${P[st.res].sub} E você, qual personagem bíblico você é?`;
+ const txt=`Fiz o teste "O que a sua forma de ler a Bíblia revela sobre você?" do Exousia e deu: ${P[st.res].n}! ${P[st.res].sub} E você, qual personagem bíblico você é? Faça o teste: https://itt.taberdavi.com.br/teste`;
  $("shWa").href="https://wa.me/?text="+encodeURIComponent(txt);$("shWa").dataset.t=txt};
+$("shWa").addEventListener("click",async e=>{if(!cardBlob)return;const f=new File([cardBlob],"meu-resultado-exousia.png",{type:"image/png"});
+ if(navigator.canShare&&navigator.canShare({files:[f]})){e.preventDefault();try{await navigator.share({files:[f],text:$("shWa").dataset.t});$("shMsg").textContent="No menu que abriu, escolha o WhatsApp."}catch(err){}}});
 $("shNative").onclick=async()=>{const m=$("shMsg");if(!cardBlob)return;const f=new File([cardBlob],"meu-resultado-exousia.png",{type:"image/png"});
  try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text:$("shWa").dataset.t});m.textContent="";return}throw 0}
  catch(e){if(e&&e.name==="AbortError")return;m.textContent="Este navegador não abre o compartilhamento direto. Salve a imagem e poste nos stories, ou envie pelo WhatsApp."}};
