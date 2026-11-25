@@ -186,7 +186,6 @@ th{color:var(--mut);font-weight:800}
     <p class="mut small" style="text-align:center">No celular, você também pode tocar e segurar a imagem pra salvar.</p>
     <div class="share">
       <button id="shNative">Compartilhar</button>
-      <a class="btn wa" id="shWa" href="#" target="_blank" rel="noopener">Enviar no WhatsApp</a>
       <button class="ghost" id="shSave">Salvar imagem pros stories</button>
     </div>
     <p class="small" id="shMsg" aria-live="polite" style="text-align:center"></p>
@@ -328,7 +327,7 @@ function fillResult(p){$("rHi").textContent=st.nome?`${st.nome}, a sua forma de 
  $("rStatus").textContent=STXT[st.status]||""}
 
 /* card image */
-let cardBlob=null;
+let cardBlob=null,shareTxt="";
 function wrap(ctx,text,x,y,maxW,lh){const words=text.split(" ");let line="";const out=[];for(const w of words){const t=line?line+" "+w:w;if(ctx.measureText(t).width>maxW&&line){out.push(line);line=w}else line=t}if(line)out.push(line);out.forEach((l,i)=>ctx.fillText(l,x,y+i*lh));return y+out.length*lh}
 async function makeCard(){const p=P[st.res],W=1080,H=1920,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
  try{await Promise.all(["900 140px Raleway","italic 700 50px Raleway","800 40px 'Nunito Sans'"].map(f=>document.fonts.load(f)))}catch(e){}
@@ -350,12 +349,10 @@ async function makeCard(){const p=P[st.res],W=1080,H=1920,c=document.createEleme
 
 $("toStory").onclick=async()=>{show("story");$("cardImg").removeAttribute("src");$("cardImg").src=await makeCard();
  const txt=`Fiz o teste "O que a sua forma de ler a Bíblia revela sobre você?" do Exousia e deu: ${P[st.res].n}! ${P[st.res].sub} E você, qual personagem bíblico você é? Faça o teste: https://itt.taberdavi.com.br/teste`;
- $("shWa").href="https://wa.me/?text="+encodeURIComponent(txt);$("shWa").dataset.t=txt};
-$("shWa").addEventListener("click",async e=>{if(!cardBlob)return;const f=new File([cardBlob],"meu-resultado-exousia.png",{type:"image/png"});
- if(navigator.canShare&&navigator.canShare({files:[f]})){e.preventDefault();try{await navigator.share({files:[f],text:$("shWa").dataset.t});$("shMsg").textContent="No menu que abriu, escolha o WhatsApp."}catch(err){}}});
+ shareTxt=txt};
 $("shNative").onclick=async()=>{const m=$("shMsg");if(!cardBlob)return;const f=new File([cardBlob],"meu-resultado-exousia.png",{type:"image/png"});
- try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text:$("shWa").dataset.t});m.textContent="";return}throw 0}
- catch(e){if(e&&e.name==="AbortError")return;m.textContent="Este navegador não abre o compartilhamento direto. Salve a imagem e poste nos stories, ou envie pelo WhatsApp."}};
+ try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text:shareTxt});m.textContent="";return}throw 0}
+ catch(e){if(e&&e.name==="AbortError")return;m.textContent="Este navegador não abre o compartilhamento direto. Toque em “Salvar imagem” e poste nos stories ou no WhatsApp."}};
 $("shSave").onclick=async()=>{const m=$("shMsg");if(!cardBlob)return;
  try{const a=document.createElement("a");a.href=$("cardImg").src;a.download="meu-resultado-exousia.png";document.body.appendChild(a);a.click();a.remove();m.textContent="Imagem salva. Agora é só postar nos stories e marcar o Exousia."}catch(e){m.textContent="Toque e segure a imagem acima e escolha Salvar imagem."}};
 $("storyBack").onclick=()=>show("result");$("again").onclick=reset;$("storyNew").onclick=reset;
